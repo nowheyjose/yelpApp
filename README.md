@@ -1,7 +1,7 @@
 # Project 3 - YelpApp
 YelpApp is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: 9 hours spent in total
+Time spent: 10 hours spent in total
 
 ## User Stories
 
@@ -24,24 +24,29 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. I want to add this to my group project
+2. I would like to add a catagories tab or filter in the navigation bar. What's the best way to do that?
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/0SCenCi.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+<img src='http://i.imgur.com/4ITVqEb.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+It would be extremely helpful if there was some commentation on the api use. It's tricky to implement some of the code when you're not sure what was being used where. I had trouble implementing some features because I think I need to use something from the code in the starter set.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Timothy Lee]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
