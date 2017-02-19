@@ -8,12 +8,13 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     var businesses: [Business]!
     
-    var searchBar = UISearchBar()
+    let searchBar = UISearchBar()
+    var isMoreDataLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        
-        searchBar.sizeToFit()
-        
+        createSearchBar()
         
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
@@ -40,7 +39,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             
             }
         )
-        navigationItem.titleView = searchBar
+        //navigationItem.titleView = searchBar
         
         /* Example of Yelp search with more search options specified
          Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -53,6 +52,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
          }
          */
         
+    }
+    
+    func createSearchBar(){
+        searchBar.showsCancelButton = false
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
     }
 
     
@@ -78,15 +84,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    /*
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         Business.searchWithTerm(term: searchText, completion: { (businesses: [Business]?, error: Error?) -> Void in self.businesses = businesses; self.tableView.reloadData(); if let businesses = businesses { for business in businesses { print(business.name!); print(business.address!) } } }) }
@@ -109,4 +108,37 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         view.endEditing(true)
     }
     
+//    
+//    func loadMoreData() {
+//        let myRequest = yelpToken
+//        let session = URLSession(
+//            configuration: URLSessionConfiguration.default,
+//            delegate:nil,
+//            delegateQueue:OperationQueue.main
+//        )
+//        let task : URLSessionDataTask = session.dataTask(with: myRequest,completionHandler: { (data, response, error) in self.isMoreDataLoading = false
+//            self.tableView.reloadData()
+//            
+//        })
+//        task.resume()
+//    
+//    }
+//    
+//    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        // Handle scroll behavior here
+//        if (!isMoreDataLoading) {
+//            isMoreDataLoading = true
+//        // Calculate the position of one screen length before the bottom of the results
+//        let scrollViewContentHeight = tableView.contentSize.height
+//        let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+//            
+//        // When the user has scrolled past the threshold, start requesting
+//        if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+//                isMoreDataLoading = true
+//        
+//                loadMoreData()
+//            }
+//        }
+//    }
 }

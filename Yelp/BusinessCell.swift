@@ -21,11 +21,11 @@ class BusinessCell: UITableViewCell {
     var business: Business! {
         didSet {
             nameLabel.text = business.name
+            thumbImgView.setImageWith((((business.imageURL)))!)
             categoriesLabel.text = business.categories
             distanceLabel.text = business.distance
             addressLabel.text = business.address
             reviewsCountLabel.text = "\(business.reviewCount!) Reviews"
-            thumbImgView.setImageWith(business.imageURL!)
             ratingImgView.setImageWith(business.ratingImageURL!)
         }
     }
